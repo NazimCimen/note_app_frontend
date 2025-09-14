@@ -1,0 +1,107 @@
+name: flutter_note_app
+description: "A new Flutter project."
+publish_to: 'none' 
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.8.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+# Core
+  supabase_flutter: ^2.9.1
+  mockito: ^5.4.4 # Used to test the app and improve the code quality
+  dartz: ^0.10.1 # Functional programming library for Dart
+  get_it: ^7.7.0 # Service locator for dependency injection
+  uuid: ^4.5.0 # Generates unique IDs for objects or entities
+  json_annotation: 4.9.0 # Enables code generation for JSON serialization/deserialization
+  package_info_plus: ^8.1.0 # Retrieves package information like app version, build number, etc.
+  equatable: ^2.0.5 # used to prevent object reference shifts
+  internet_connection_checker: ^1.0.0+1 # Checks for active internet connections
+  dio: ^5.8.0+1
+  provider: ^6.1.2 # State management library for Flutter
+  permission_handler: ^12.0.1 # Handles permissions
+  flutter_bloc: ^8.1.6 # Bloc/Cubit state management
+  go_router: ^14.2.0 # Declarative routing
+  flutter_dotenv: ^5.1.0 # Environment variables from .env files
+
+
+  # Cache
+  hive: ^2.2.3 # A fast and lightweight NoSQL database for local data storage
+  hive_flutter: ^1.1.0 # Provides simple and secure data storage with Hive in Flutter applications
+  shared_preferences: ^2.3.2 # For local data storage
+  flutter_secure_storage: ^9.2.2 # Secure storage for sensitive data like tokens
+
+  # Config
+  easy_localization: ^3.0.7 # Simplifies localization and internationalization of the app
+  intl: ^0.20.2 # Provides internationalization and localization facilities
+
+  # Utils 
+  flutter_timezone: ^4.1.1 # Handles timezones
+
+  # UI
+  google_fonts: ^6.2.1 # Allows the use of fonts from Google Fonts
+  flutter_screenutil: ^5.9.3 # Responsive design utilities
+  cupertino_icons: ^1.0.8
+  freezed_annotation: ^2.4.4 # Immutable data classes with union types
+  google_sign_in: ^6.2.2
+  firebase_core: ^4.0.0
+  phone_form_field: ^10.0.8
+  image_picker: ^1.2.0
+  image_cropper: ^9.1.0
+  infinite_scroll_pagination: ^5.1.1
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  json_serializable: ^6.8.0 # Code generator for JSON serialization
+  build_runner: ^2.3.3 # Build system for Dart to generate code
+  very_good_analysis: ^6.0.0 # Linter rules for code quality and consistency
+  change_app_package_name: ^1.5.0 # Allows changing the app package name without manual code adjustments
+  freezed: ^2.5.7
+
+
+flutter:
+
+  uses-material-design: true
+  fonts:
+    - family: EuclidCircularA
+      fonts:
+        - asset: assets/fonts/Euclid Circular A Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Euclid Circular A Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Euclid Circular A SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Euclid Circular A Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Euclid Circular A Light.ttf
+          weight: 300
+        # italic fonts:
+        - asset: assets/fonts/Euclid Circular A Italic.ttf
+          weight: 400
+          style: italic
+        - asset: assets/fonts/Euclid Circular A Medium Italic.ttf
+          weight: 500
+          style: italic
+        - asset: assets/fonts/Euclid Circular A SemiBold Italic.ttf
+          weight: 600
+          style: italic
+        - asset: assets/fonts/Euclid Circular A Bold Italic.ttf
+          weight: 700
+          style: italic
+        - asset: assets/fonts/Euclid Circular A Light Italic.ttf
+          weight: 300
+          style: italic
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Montserrat-Black.ttf
+          weight: 900
+
+  assets:
+    - assets/images/
+    - assets/lang/
+    - .env
