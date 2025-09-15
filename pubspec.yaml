@@ -1,5 +1,5 @@
 name: flutter_note_app
-description: "A new Flutter project."
+description: "NoteApp - A modern note-taking application."
 publish_to: 'none' 
 version: 1.0.0+1
 
@@ -10,58 +10,66 @@ dependencies:
   flutter:
     sdk: flutter
 
-# Core
-  supabase_flutter: ^2.9.1
-  mockito: ^5.4.4 # Used to test the app and improve the code quality
-  dartz: ^0.10.1 # Functional programming library for Dart
+  # State Management
+  flutter_bloc: ^8.1.6 # Bloc/Cubit state management for reactive programming
+  provider: ^6.1.2 # Simple state management and dependency injection
+
+  # Navigation & Routing
+  go_router: ^14.2.0 # Declarative routing with type-safe navigation
+
+  # Network & API
+  dio: ^5.8.0+1 # HTTP client for making API requests
+  supabase_flutter: ^2.9.1 # Backend-as-a-Service for authentication and database
+  internet_connection_checker: ^1.0.0+1 # Check internet connectivity status
+
+  # Local Storage & Caching
+  hive: ^2.2.3 # Fast NoSQL database for local data storage
+  hive_flutter: ^1.1.0 # Flutter integration for Hive database
+  shared_preferences: ^2.3.2 # Simple key-value storage for app preferences
+  flutter_secure_storage: ^9.2.2 # Encrypted storage for sensitive data like tokens
+
+  # Dependency Injection
   get_it: ^7.7.0 # Service locator for dependency injection
-  uuid: ^4.5.0 # Generates unique IDs for objects or entities
-  json_annotation: 4.9.0 # Enables code generation for JSON serialization/deserialization
-  package_info_plus: ^8.1.0 # Retrieves package information like app version, build number, etc.
-  equatable: ^2.0.5 # used to prevent object reference shifts
-  internet_connection_checker: ^1.0.0+1 # Checks for active internet connections
-  dio: ^5.8.0+1
-  provider: ^6.1.2 # State management library for Flutter
-  permission_handler: ^12.0.1 # Handles permissions
-  flutter_bloc: ^8.1.6 # Bloc/Cubit state management
-  go_router: ^14.2.0 # Declarative routing
-  flutter_dotenv: ^5.1.0 # Environment variables from .env files
 
-
-  # Cache
-  hive: ^2.2.3 # A fast and lightweight NoSQL database for local data storage
-  hive_flutter: ^1.1.0 # Provides simple and secure data storage with Hive in Flutter applications
-  shared_preferences: ^2.3.2 # For local data storage
-  flutter_secure_storage: ^9.2.2 # Secure storage for sensitive data like tokens
-
-  # Config
-  easy_localization: ^3.0.7 # Simplifies localization and internationalization of the app
-  intl: ^0.20.2 # Provides internationalization and localization facilities
-
-  # Utils 
-  flutter_timezone: ^4.1.1 # Handles timezones
-
-  # UI
-  google_fonts: ^6.2.1 # Allows the use of fonts from Google Fonts
-  flutter_screenutil: ^5.9.3 # Responsive design utilities
-  cupertino_icons: ^1.0.8
+  # Data Models & Serialization
+  json_annotation: 4.9.0 # Code generation for JSON serialization/deserialization
+  equatable: ^2.0.5 # Value equality for Dart objects
   freezed_annotation: ^2.4.4 # Immutable data classes with union types
-  google_sign_in: ^6.2.2
-  firebase_core: ^4.0.0
-  phone_form_field: ^10.0.8
-  image_picker: ^1.2.0
-  image_cropper: ^9.1.0
-  infinite_scroll_pagination: ^5.1.1
+
+  # Utilities
+  uuid: ^4.5.0 # Generate unique identifiers for objects
+  dartz: ^0.10.1 # Functional programming utilities for error handling
+  flutter_dotenv: ^5.1.0 # Load environment variables from .env files
+  flutter_timezone: ^4.1.1 # Handle timezone conversions and operations
+
+  # Localization & Internationalization
+  easy_localization: ^3.0.7 # Simplify app localization and internationalization
+  intl: ^0.20.2 # Internationalization and localization utilities
+
+  # UI & Design
+  google_fonts: ^6.2.1 # Use Google Fonts in your Flutter app
+  flutter_screenutil: ^5.9.3 # Responsive design utilities for different screen sizes
+  cupertino_icons: ^1.0.8 # iOS-style icons for Flutter apps
+  infinite_scroll_pagination: ^5.1.1 # Implement infinite scroll pagination in lists
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  json_serializable: ^6.8.0 # Code generator for JSON serialization
-  build_runner: ^2.3.3 # Build system for Dart to generate code
+
+  # Code Generation
+  json_serializable: ^6.8.0 # Generate JSON serialization code from annotations
+  build_runner: ^2.3.3 # Build system for Dart code generation
+  freezed: ^2.5.7 # Generate immutable classes and union types
+
+  # Testing
+  mockito: ^5.4.4 # Generate mock objects for unit testing
+
+  # Code Quality & Analysis
   very_good_analysis: ^6.0.0 # Linter rules for code quality and consistency
-  change_app_package_name: ^1.5.0 # Allows changing the app package name without manual code adjustments
-  freezed: ^2.5.7
+
+  # Development Tools
+  change_app_package_name: ^1.5.0 # Change app package name without manual adjustments
 
 
 flutter:
@@ -104,4 +112,5 @@ flutter:
   assets:
     - assets/images/
     - assets/lang/
+    - assets/screenshots/
     - .env

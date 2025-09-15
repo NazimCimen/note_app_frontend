@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_note_app/presentation/layout/bottom_nav.dart';
-import 'package:flutter_note_app/presentation/profile/profile_view.dart';
+import 'package:flutter_note_app/presentation/profile/view/profile_view.dart';
 import 'package:flutter_note_app/presentation/home/view/home_view.dart';
 import 'package:flutter_note_app/presentation/layout/cubit/app_layout_cubit.dart';
 import 'package:flutter_note_app/presentation/home/bloc/home_cubit.dart';

@@ -1,193 +1,271 @@
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 @immutable
 final class StringConstants {
   const StringConstants._();
 
   // App
-  static String get appName => 'Smart Sell';
-  static String get appTagline => 'Dakikalar içinde akıllı teklif oluşturun';
-  static String get appDescription =>
-      'Smart Sell; satış ekiplerinin müşteri seçimlerine göre otomatik, tutarlı ve hızlı fiyat teklifleri oluşturmasını sağlar. Firma bilgileri bir kez kaydedilir, her teklifte tekrar kullanılabilir. Çıktılar anında PDF olarak paylaşılabilir.';
+  static String get appName => 'appName'.tr();
+  static String get appTagline => 'appTagline'.tr();
+  static String get appDescription => 'appDescription'.tr();
 
   // Common
-  static String get continueText => 'Devam Et';
-  static String get cancel => 'Vazgeç';
-  static String get ok => 'Tamam';
+  static String get continueText => 'continueText'.tr();
+  static String get cancel => 'cancel'.tr();
+  static String get ok => 'ok'.tr();
 
   // Auth - headers
-  // Auth - contextual headers
-  static String get authLoginTitle => 'Hoş geldiniz';
-  static String get authLoginSubtitle =>
-      'Hesabınıza giriş yapın ve tekliflerinizi yönetin';
-  static String get authSignupTitle => 'Aramıza katılın';
-  static String get authSignupSubtitle =>
-      'Smart Sell ile dakikalar içinde akıllı teklif oluşturun';
-  // Backward-friendly defaults (used if specific titles not provided)
+  static String get authLoginTitle => 'authLoginTitle'.tr();
+  static String get authLoginSubtitle => 'authLoginSubtitle'.tr();
+  static String get authSignupTitle => 'authSignupTitle'.tr();
+  static String get authSignupSubtitle => 'authSignupSubtitle'.tr();
   static String get welcomeTitle => authLoginTitle;
   static String get welcomeSubtitle => appTagline;
 
   // Auth - fields
-  static String get fullName => 'Ad Soyad';
-  static String get phoneNumber => 'Telefon numarası';
-  static String get email => 'E-posta adresi';
-  static String get password => 'Şifreniz';
+  static String get fullName => 'fullName'.tr();
+  static String get phoneNumber => 'phoneNumber'.tr();
+  static String get email => 'email'.tr();
+  static String get password => 'password'.tr();
 
   // Auth - actions
-  static String get login => 'Giriş yap';
-  static String get signup => 'Kayıt ol';
-  static String get logout => 'Çıkış yap';
+  static String get login => 'login'.tr();
+  static String get signup => 'signup'.tr();
+  static String get logout => 'logout'.tr();
 
   // Auth - footers
-  static String get dontHaveAccount => 'Hesabınız yok mu? ';
-  static String get haveAccount => 'Zaten hesabınız var mı? ';
-  static String get goToSignup => 'Kayıt ol';
-  static String get goToLogin => 'Giriş yap';
+  static String get dontHaveAccount => 'dontHaveAccount'.tr();
+  static String get haveAccount => 'haveAccount'.tr();
+  static String get goToSignup => 'goToSignup'.tr();
+  static String get goToLogin => 'goToLogin'.tr();
   
   // Auth - loading messages
-  static String get socialLoginLoadingMessage => 'Giriş yapılıyor...';
+  static String get socialLoginLoadingMessage => 'socialLoginLoadingMessage'.tr();
 
   // Feedback / Snackbars
-  static String get loginSuccess => 'Hoş geldiniz!';
-  static String get signupSuccess => 'Kayıt tamamlandı. Hemen başlayalım!';
-  static String get invalidCredentials => 'Bilgilerinizi kontrol edip tekrar deneyin';
-  static String get invalidSignupData => 'Lütfen tüm alanları kontrol edin';
+  static String get loginSuccess => 'loginSuccess'.tr();
+  static String get signupSuccess => 'signupSuccess'.tr();
+  static String get invalidCredentials => 'invalidCredentials'.tr();
+  static String get invalidSignupData => 'invalidSignupData'.tr();
 
   // Validation messages
-  static String get validationNameRequired => 'Ad soyad gereklidir';
-  static String get validationNameInvalid => 'Geçerli bir ad soyad girin';
-  static String get validationEmailRequired => 'E-posta gereklidir';
-  static String get validationEmailInvalid => 'Geçerli bir e-posta adresi girin';
-  static String get validationPasswordRequired => 'Şifre gereklidir';
-  static String get validationPasswordMinLength => 'Şifre en az 6 karakter olmalı';
-  static String get validationPhoneRequired => 'Telefon numarası gereklidir';
-  static String get validationPhoneInvalid => 'Geçerli bir telefon numarası giriniz';
+  static String get validationNameRequired => 'validationNameRequired'.tr();
+  static String get validationNameInvalid => 'validationNameInvalid'.tr();
+  static String get validationEmailRequired => 'validationEmailRequired'.tr();
+  static String get validationEmailInvalid => 'validationEmailInvalid'.tr();
+  static String get validationPasswordRequired => 'validationPasswordRequired'.tr();
+  static String get validationPasswordMinLength => 'validationPasswordMinLength'.tr();
+  static String get validationPhoneRequired => 'validationPhoneRequired'.tr();
+  static String get validationPhoneInvalid => 'validationPhoneInvalid'.tr();
 
-  // PDF / Offer
-  static String get createOffer => 'Teklif oluştur';
-  static String get downloadPdf => 'PDF indir';
-  static String get regenerate => 'Teklifi yenile';
+  // Note Operations
+  static String get createNote => 'createNote'.tr();
+  static String get editNote => 'editNote'.tr();
+  static String get saveNote => 'saveNote'.tr();
+  static String get updateNote => 'updateNote'.tr();
+  static String get deleteNote => 'deleteNote'.tr();
+  static String get favoriteNote => 'favoriteNote'.tr();
+  static String get unfavoriteNote => 'unfavoriteNote'.tr();
 
   // Auth Error Messages
   // Login Errors
-  static String get errorInvalidCredentials => 'E-posta veya şifre hatalı';
-  static String get errorUserNotFound => 'Kullanıcı bulunamadı';
-  static String get errorUserBanned => 'Hesabınız geçici olarak askıya alınmıştır';
-  static String get errorUserAlreadyExists => 'Bu kullanıcı zaten mevcut';
+  static String get errorInvalidCredentials => 'errorInvalidCredentials'.tr();
+  static String get errorUserNotFound => 'errorUserNotFound'.tr();
+  static String get errorUserBanned => 'errorUserBanned'.tr();
+  static String get errorUserAlreadyExists => 'errorUserAlreadyExists'.tr();
   
   // Rate Limiting Errors
-  static String get errorTooManyRequests => 'Çok fazla deneme yaptınız. Lütfen birkaç dakika bekleyin.';
-  static String get errorOverEmailSendRateLimit => 'Çok fazla e-posta gönderildi. Lütfen bekleyin.';
-  static String get errorOverSmsSendRateLimit => 'Çok fazla SMS gönderildi. Lütfen bekleyin.';
+  static String get errorTooManyRequests => 'errorTooManyRequests'.tr();
+  static String get errorOverEmailSendRateLimit => 'errorOverEmailSendRateLimit'.tr();
+  static String get errorOverSmsSendRateLimit => 'errorOverSmsSendRateLimit'.tr();
   
   // Email Errors
-  static String get errorEmailAddressInvalid => 'Geçersiz e-posta adresi';
-  static String get errorEmailAddressNotAuthorized => 'Bu e-posta adresi için yetkilendirme yok';
-  static String get errorEmailExists => 'Bu e-posta adresi zaten kullanımda';
+  static String get errorEmailAddressInvalid => 'errorEmailAddressInvalid'.tr();
+  static String get errorEmailAddressNotAuthorized => 'errorEmailAddressNotAuthorized'.tr();
+  static String get errorEmailExists => 'errorEmailExists'.tr();
   
   // Phone Errors
-  static String get errorPhoneExists => 'Bu telefon numarası zaten kullanımda';
+  static String get errorPhoneExists => 'errorPhoneExists'.tr();
   
   // OTP Errors
-  static String get errorOtpDisabled => 'OTP girişi devre dışı';
-  static String get errorOtpExpired => 'OTP kodunun süresi dolmuş';
+  static String get errorOtpDisabled => 'errorOtpDisabled'.tr();
+  static String get errorOtpExpired => 'errorOtpExpired'.tr();
   
   // MFA Errors
-  static String get errorInsufficientAal => 'MFA doğrulaması gerekli';
-  static String get errorMfaChallengeExpired => 'MFA doğrulama süresi dolmuş';
-  static String get errorMfaVerificationFailed => 'MFA doğrulama başarısız';
-  static String get errorMfaVerificationRejected => 'MFA doğrulama reddedildi';
-  static String get errorMfaFactorNotFound => 'MFA faktörü bulunamadı';
-  static String get errorMfaFactorNameConflict => 'MFA faktör adı çakışması';
-  static String get errorMfaPhoneEnrollNotEnabled => 'Telefon MFA kaydı devre dışı';
-  static String get errorMfaTotpEnrollNotEnabled => 'TOTP MFA kaydı devre dışı';
-  static String get errorMfaWebAuthnEnrollNotEnabled => 'WebAuthn MFA kaydı devre dışı';
-  static String get errorTooManyEnrolledMfaFactors => 'Çok fazla MFA faktörü kayıtlı';
-  static String get errorMfaVerifiedFactorExists => 'Doğrulanmış telefon faktörü zaten mevcut';
-  static String get errorMfaIpAddressMismatch => 'IP adresi uyumsuzluğu';
+  static String get errorInsufficientAal => 'errorInsufficientAal'.tr();
+  static String get errorMfaChallengeExpired => 'errorMfaChallengeExpired'.tr();
+  static String get errorMfaVerificationFailed => 'errorMfaVerificationFailed'.tr();
+  static String get errorMfaVerificationRejected => 'errorMfaVerificationRejected'.tr();
+  static String get errorMfaFactorNotFound => 'errorMfaFactorNotFound'.tr();
+  static String get errorMfaFactorNameConflict => 'errorMfaFactorNameConflict'.tr();
+  static String get errorMfaPhoneEnrollNotEnabled => 'errorMfaPhoneEnrollNotEnabled'.tr();
+  static String get errorMfaTotpEnrollNotEnabled => 'errorMfaTotpEnrollNotEnabled'.tr();
+  static String get errorMfaWebAuthnEnrollNotEnabled => 'errorMfaWebAuthnEnrollNotEnabled'.tr();
+  static String get errorTooManyEnrolledMfaFactors => 'errorTooManyEnrolledMfaFactors'.tr();
+  static String get errorMfaVerifiedFactorExists => 'errorMfaVerifiedFactorExists'.tr();
+  static String get errorMfaIpAddressMismatch => 'errorMfaIpAddressMismatch'.tr();
   
   // Session Errors
-  static String get errorSessionExpired => 'Oturum süresi dolmuş. Lütfen tekrar giriş yapın.';
-  static String get errorSessionNotFound => 'Oturum bulunamadı. Lütfen tekrar giriş yapın.';
-  static String get errorRefreshTokenNotFound => 'Yenileme tokeni bulunamadı';
-  static String get errorRefreshTokenAlreadyUsed => 'Yenileme tokeni zaten kullanılmış';
+  static String get errorSessionExpired => 'errorSessionExpired'.tr();
+  static String get errorSessionNotFound => 'errorSessionNotFound'.tr();
+  static String get errorRefreshTokenNotFound => 'errorRefreshTokenNotFound'.tr();
+  static String get errorRefreshTokenAlreadyUsed => 'errorRefreshTokenAlreadyUsed'.tr();
   
   // Provider Errors
-  static String get errorProviderDisabled => 'Bu giriş yöntemi devre dışı';
-  static String get errorEmailProviderDisabled => 'E-posta ile giriş devre dışı';
-  static String get errorPhoneProviderDisabled => 'Telefon ile giriş devre dışı';
-  static String get errorAnonymousProviderDisabled => 'Anonim giriş devre dışı';
-  static String get errorSignupDisabled => 'Kayıt işlemi devre dışı';
+  static String get errorProviderDisabled => 'errorProviderDisabled'.tr();
+  static String get errorEmailProviderDisabled => 'errorEmailProviderDisabled'.tr();
+  static String get errorPhoneProviderDisabled => 'errorPhoneProviderDisabled'.tr();
+  static String get errorAnonymousProviderDisabled => 'errorAnonymousProviderDisabled'.tr();
+  static String get errorSignupDisabled => 'errorSignupDisabled'.tr();
   
   // OAuth Errors
-  static String get errorOauthProviderNotSupported => 'Bu OAuth sağlayıcısı desteklenmiyor';
-  static String get errorBadOauthCallback => 'OAuth callback hatası';
-  static String get errorBadOauthState => 'OAuth state hatası';
-  static String get errorProviderEmailNeedsVerification => 'OAuth e-posta doğrulaması gerekli';
+  static String get errorOauthProviderNotSupported => 'errorOauthProviderNotSupported'.tr();
+  static String get errorBadOauthCallback => 'errorBadOauthCallback'.tr();
+  static String get errorBadOauthState => 'errorBadOauthState'.tr();
+  static String get errorProviderEmailNeedsVerification => 'errorProviderEmailNeedsVerification'.tr();
   
   // JWT Errors
-  static String get errorBadJwt => 'Geçersiz JWT token';
-  static String get errorNoAuthorization => 'Yetkilendirme gerekli';
-  static String get errorNotAdmin => 'Admin yetkisi gerekli';
+  static String get errorBadJwt => 'errorBadJwt'.tr();
+  static String get errorNoAuthorization => 'errorNoAuthorization'.tr();
+  static String get errorNotAdmin => 'errorNotAdmin'.tr();
   
   // Flow State Errors
-  static String get errorFlowStateExpired => 'Giriş akışı süresi dolmuş. Lütfen tekrar deneyin.';
-  static String get errorFlowStateNotFound => 'Giriş akışı bulunamadı. Lütfen tekrar deneyin.';
+  static String get errorFlowStateExpired => 'errorFlowStateExpired'.tr();
+  static String get errorFlowStateNotFound => 'errorFlowStateNotFound'.tr();
   
   // CAPTCHA Errors
-  static String get errorCaptchaFailed => 'CAPTCHA doğrulaması başarısız';
+  static String get errorCaptchaFailed => 'errorCaptchaFailed'.tr();
   
   // Network and Timeout Errors
-  static String get errorNetworkError => 'Ağ bağlantısı hatası. Lütfen tekrar deneyin.';
-  static String get errorRequestTimeout => 'İstek zaman aşımına uğradı. Lütfen tekrar deneyin.';
+  static String get errorNetworkError => 'errorNetworkError'.tr();
+  static String get errorRequestTimeout => 'errorRequestTimeout'.tr();
+  static String get errorNoInternetConnection => 'errorNoInternetConnection'.tr();
   
   // Conflict Errors
-  static String get errorConflict => 'Çakışma hatası. Lütfen tekrar deneyin.';
+  static String get errorConflict => 'errorConflict'.tr();
   
   // Validation Errors
-  static String get errorValidationFailed => 'Geçersiz veri formatı';
+  static String get errorValidationFailed => 'errorValidationFailed'.tr();
   
   // Password Errors
-  static String get errorWeakPassword => 'Şifre çok zayıf. Daha güçlü bir şifre seçin.';
-  static String get errorSamePassword => 'Yeni şifre mevcut şifre ile aynı olamaz';
+  static String get errorWeakPassword => 'errorWeakPassword'.tr();
+  static String get errorSamePassword => 'errorSamePassword'.tr();
   
   // Reauthentication Errors
-  static String get errorReauthenticationNeeded => 'Şifre değiştirmek için yeniden kimlik doğrulama gerekli';
-  static String get errorReauthenticationNotValid => 'Yeniden kimlik doğrulama başarısız';
+  static String get errorReauthenticationNeeded => 'errorReauthenticationNeeded'.tr();
+  static String get errorReauthenticationNotValid => 'errorReauthenticationNotValid'.tr();
   
   // Unexpected Errors
-  static String get errorUnexpectedFailure => 'Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin.';
+  static String get errorUnexpectedFailure => 'errorUnexpectedFailure'.tr();
 
   // Note Operations
-  static String get noteCreateFailed => 'Not oluşturulamadı';
-  static String get noteGetFailed => 'Notlar getirilemedi';
-  static String get noteNotFound => 'Not bulunamadı';
-  static String get noteUpdateFailed => 'Not güncellenemedi';
-  static String get noteDeleteFailed => 'Not silinemedi';
+  static String get noteCreateFailed => 'noteCreateFailed'.tr();
+  static String get noteGetFailed => 'noteGetFailed'.tr();
+  static String get noteNotFound => 'noteNotFound'.tr();
+  static String get noteUpdateFailed => 'noteUpdateFailed'.tr();
+  static String get noteDeleteFailed => 'noteDeleteFailed'.tr();
+  static String get noteSaveSuccess => 'noteSaveSuccess'.tr();
+  static String get noteUpdateSuccess => 'noteUpdateSuccess'.tr();
+  static String get noteDeleteSuccess => 'noteDeleteSuccess'.tr();
+  static String get noteUnsavedChanges => 'noteUnsavedChanges'.tr();
+  static String get noteExitDialogTitle => 'noteExitDialogTitle'.tr();
+  static String get noteExitDialogContent => 'noteExitDialogContent'.tr();
+  static String get noteExitDialogCancel => 'noteExitDialogCancel'.tr();
+  static String get noteExitDialogExit => 'noteExitDialogExit'.tr();
+  static String get noteSaving => 'noteSaving'.tr();
+
+  // Home Screen
+  static String get homeTitle => 'homeTitle'.tr();
+  static String get homeFilter => 'homeFilter'.tr();
+  static String get homeSort => 'homeSort'.tr();
+  static String get homeSearchHint => 'homeSearchHint'.tr();
+  static String get homeSearchType => 'homeSearchType'.tr();
+  static String get homeSearchTitle => 'homeSearchTitle'.tr();
+  static String get homeSearchContent => 'homeSearchContent'.tr();
+  static String get homeSearchBoth => 'homeSearchBoth'.tr();
+  static String get homeFilterAll => 'homeFilterAll'.tr();
+  static String get homeFilterFavorites => 'homeFilterFavorites'.tr();
+  static String get homeSortNewest => 'homeSortNewest'.tr();
+  static String get homeSortOldest => 'homeSortOldest'.tr();
+  static String get homeRetryButton => 'homeRetryButton'.tr();
+  static String get homeNoNotesTitle => 'homeNoNotesTitle'.tr();
+  static String get homeNoNotesSubtitle => 'homeNoNotesSubtitle'.tr();
+  static String get homeCreateFirstNote => 'homeCreateFirstNote'.tr();
+  static String get homeErrorTitle => 'homeErrorTitle'.tr();
+  static String get homeErrorSubtitle => 'homeErrorSubtitle'.tr();
+  static String get homeRetryButtonText => 'homeRetryButtonText'.tr();
+
+  // Profile Screen
+  static String get profileTitle => 'profileTitle'.tr();
+  static String get profileLogoutTitle => 'profileLogoutTitle'.tr();
+  static String get profileLogoutContent => 'profileLogoutContent'.tr();
+  static String get profileLogoutButton => 'profileLogoutButton'.tr();
+  static String get profileError => 'profileError'.tr();
+  static String get profileRetryButton => 'profileRetryButton'.tr();
+  static String get profileUnknownState => 'profileUnknownState'.tr();
+  static String get profileDefaultUsername => 'profileDefaultUsername'.tr();
+  static String get profileLanguageTurkish => 'profileLanguageTurkish'.tr();
+  static String get profileLanguageEnglish => 'profileLanguageEnglish'.tr();
+
+  // Common UI
+  static String get close => 'close'.tr();
+  static String get retry => 'retry'.tr();
+  static String get loading => 'loading'.tr();
+  static String get language => 'language'.tr();
+  
+  // User Info
+  static String get personalInfo => 'personalInfo'.tr();
+  static String get username => 'username'.tr();
+  
+  // AI Operations
+  static String get keywords => 'keywords'.tr();
+  static String get textSummary => 'textSummary'.tr();
+  static String get generating => 'generating'.tr();
+  static String get generateKeywords => 'generateKeywords'.tr();
+  static String get summarize => 'summarize'.tr();
+  static String get keywordsHint => 'keywordsHint'.tr();
+  static String get summaryHint => 'summaryHint'.tr();
+  
+  // Note Input
+  static String get noteTitleHint => 'noteTitleHint'.tr();
+  static String get noteContentHint => 'noteContentHint'.tr();
+  
+  // Theme Selection
+  static String get theme => 'theme'.tr();
+  static String get lightTheme => 'lightTheme'.tr();
+  static String get darkTheme => 'darkTheme'.tr();
+
+  // Gemini AI Operations
+  static String get geminiApiKeyNotFound => 'geminiApiKeyNotFound'.tr();
+  static String get geminiKeywordsGenerationFailed => 'geminiKeywordsGenerationFailed'.tr();
+  static String get geminiSummaryGenerationFailed => 'geminiSummaryGenerationFailed'.tr();
+  static String get geminiContentEmpty => 'geminiContentEmpty'.tr();
+  static String get geminiContentTooShort => 'geminiContentTooShort'.tr();
 
   // Dio Error Messages
-  static String get dioConnectionTimeout => 'Bağlantı zaman aşımı';
-  static String get dioAuthError => 'Yetkilendirme hatası - JWT token gerekli';
-  static String get dioNotFound => 'API endpoint bulunamadı';
-  static String get dioServerError => 'Sunucu hatası';
-  static String get dioRequestCancelled => 'İstek iptal edildi';
-  static String get dioConnectionError => 'API sunucusuna bağlanılamıyor';
-  static String get dioUnknownError => 'Bilinmeyen hata';
-  static String get dioUnexpectedError => 'Beklenmeyen hata';
+  static String get dioConnectionTimeout => 'dioConnectionTimeout'.tr();
+  static String get dioAuthError => 'dioAuthError'.tr();
+  static String get dioNotFound => 'dioNotFound'.tr();
+  static String get dioServerError => 'dioServerError'.tr();
+  static String get dioRequestCancelled => 'dioRequestCancelled'.tr();
+  static String get dioConnectionError => 'dioConnectionError'.tr();
+  static String get dioUnknownError => 'dioUnknownError'.tr();
+  static String get dioUnexpectedError => 'dioUnexpectedError'.tr();
   
   // HTTP Status Code Error Messages
-  static String get httpBadRequest => 'Geçersiz istek';
-  static String get httpForbidden => 'Bu işlem için yetkiniz yok';
-  static String get httpConflict => 'Veri çakışması';
-  static String get httpUnprocessableEntity => 'Geçersiz veri formatı';
-  static String get httpTooManyRequests => 'Çok fazla istek gönderildi. Lütfen bekleyin.';
-  static String get httpBadGateway => 'Sunucu geçici olarak kullanılamıyor';
-  static String get httpServiceUnavailable => 'Sunucu bakımda';
-  static String get httpGatewayTimeout => 'Sunucu yanıt vermiyor';
+  static String get httpBadRequest => 'httpBadRequest'.tr();
+  static String get httpForbidden => 'httpForbidden'.tr();
+  static String get httpConflict => 'httpConflict'.tr();
+  static String get httpUnprocessableEntity => 'httpUnprocessableEntity'.tr();
+  static String get httpTooManyRequests => 'httpTooManyRequests'.tr();
+  static String get httpBadGateway => 'httpBadGateway'.tr();
+  static String get httpServiceUnavailable => 'httpServiceUnavailable'.tr();
+  static String get httpGatewayTimeout => 'httpGatewayTimeout'.tr();
 
   // Time Utils
-  static String get timeJustNow => 'Az önce';
-  static String timeDaysAgo(int days) => '$days gün önce';
-  static String timeHoursAgo(int hours) => '$hours saat önce';
-  static String timeMinutesAgo(int minutes) => '$minutes dakika önce';
+  static String get timeJustNow => 'timeJustNow'.tr();
+  static String timeDaysAgo(int days) => 'timeDaysAgo'.tr(namedArgs: {'days': days.toString()});
+  static String timeHoursAgo(int hours) => 'timeHoursAgo'.tr(namedArgs: {'hours': hours.toString()});
+  static String timeMinutesAgo(int minutes) => 'timeMinutesAgo'.tr(namedArgs: {'minutes': minutes.toString()});
 }

@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_note_app/core/error/failure.dart';
 import 'package:flutter_note_app/data/models/user_model.dart';
@@ -272,5 +273,24 @@ class AuthErrorHandler {
       default:
         return handleGeneralAuthException(e);
     }
+  }
+
+  /// Handle network-related exceptions (SocketException, ClientException, AuthRetryableFetchException, etc.)
+  static Either<Failure, T> handleNetworkException<T>(dynamic exception) {
+    if (exception is SocketException || 
+        exception.toString().contains('SocketException') ||
+        exception.toString().contains('Failed host lookup') ||
+        exception.toString().contains('No address associated with hostname')) {
+      return left(
+        ConnectionFailure(
+          errorMessage: StringConstants.errorNoInternetConnection,
+        ),
+      );
+    }
+    return left(
+      ServerFailure(
+        errorMessage: StringConstants.errorUnexpectedFailure,
+      ),
+    );
   }
 }

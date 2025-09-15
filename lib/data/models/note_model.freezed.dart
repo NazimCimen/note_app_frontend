@@ -32,6 +32,8 @@ mixin _$NoteModel {
   String? get createdAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'updated_at')
   String? get updatedAt => throw _privateConstructorUsedError;
+  String? get summary => throw _privateConstructorUsedError;
+  String? get keywords => throw _privateConstructorUsedError;
 
   /// Serializes this NoteModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -56,6 +58,8 @@ abstract class $NoteModelCopyWith<$Res> {
     @JsonKey(name: 'user_id') String? userId,
     @JsonKey(name: 'created_at') String? createdAt,
     @JsonKey(name: 'updated_at') String? updatedAt,
+    String? summary,
+    String? keywords,
   });
 }
 
@@ -81,6 +85,8 @@ class _$NoteModelCopyWithImpl<$Res, $Val extends NoteModel>
     Object? userId = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
+    Object? summary = freezed,
+    Object? keywords = freezed,
   }) {
     return _then(
       _value.copyWith(
@@ -112,6 +118,14 @@ class _$NoteModelCopyWithImpl<$Res, $Val extends NoteModel>
                 ? _value.updatedAt
                 : updatedAt // ignore: cast_nullable_to_non_nullable
                       as String?,
+            summary: freezed == summary
+                ? _value.summary
+                : summary // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            keywords: freezed == keywords
+                ? _value.keywords
+                : keywords // ignore: cast_nullable_to_non_nullable
+                      as String?,
           )
           as $Val,
     );
@@ -135,6 +149,8 @@ abstract class _$$NoteModelImplCopyWith<$Res>
     @JsonKey(name: 'user_id') String? userId,
     @JsonKey(name: 'created_at') String? createdAt,
     @JsonKey(name: 'updated_at') String? updatedAt,
+    String? summary,
+    String? keywords,
   });
 }
 
@@ -159,6 +175,8 @@ class __$$NoteModelImplCopyWithImpl<$Res>
     Object? userId = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
+    Object? summary = freezed,
+    Object? keywords = freezed,
   }) {
     return _then(
       _$NoteModelImpl(
@@ -190,6 +208,14 @@ class __$$NoteModelImplCopyWithImpl<$Res>
             ? _value.updatedAt
             : updatedAt // ignore: cast_nullable_to_non_nullable
                   as String?,
+        summary: freezed == summary
+            ? _value.summary
+            : summary // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        keywords: freezed == keywords
+            ? _value.keywords
+            : keywords // ignore: cast_nullable_to_non_nullable
+                  as String?,
       ),
     );
   }
@@ -206,6 +232,8 @@ class _$NoteModelImpl extends _NoteModel {
     @JsonKey(name: 'user_id') this.userId,
     @JsonKey(name: 'created_at') this.createdAt,
     @JsonKey(name: 'updated_at') this.updatedAt,
+    this.summary,
+    this.keywords,
   }) : super._();
 
   factory _$NoteModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -229,10 +257,14 @@ class _$NoteModelImpl extends _NoteModel {
   @override
   @JsonKey(name: 'updated_at')
   final String? updatedAt;
+  @override
+  final String? summary;
+  @override
+  final String? keywords;
 
   @override
   String toString() {
-    return 'NoteModel(id: $id, title: $title, content: $content, isFavorite: $isFavorite, userId: $userId, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'NoteModel(id: $id, title: $title, content: $content, isFavorite: $isFavorite, userId: $userId, createdAt: $createdAt, updatedAt: $updatedAt, summary: $summary, keywords: $keywords)';
   }
 
   @override
@@ -249,7 +281,10 @@ class _$NoteModelImpl extends _NoteModel {
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt));
+                other.updatedAt == updatedAt) &&
+            (identical(other.summary, summary) || other.summary == summary) &&
+            (identical(other.keywords, keywords) ||
+                other.keywords == keywords));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -263,6 +298,8 @@ class _$NoteModelImpl extends _NoteModel {
     userId,
     createdAt,
     updatedAt,
+    summary,
+    keywords,
   );
 
   /// Create a copy of NoteModel
@@ -288,6 +325,8 @@ abstract class _NoteModel extends NoteModel {
     @JsonKey(name: 'user_id') final String? userId,
     @JsonKey(name: 'created_at') final String? createdAt,
     @JsonKey(name: 'updated_at') final String? updatedAt,
+    final String? summary,
+    final String? keywords,
   }) = _$NoteModelImpl;
   const _NoteModel._() : super._();
 
@@ -312,6 +351,10 @@ abstract class _NoteModel extends NoteModel {
   @override
   @JsonKey(name: 'updated_at')
   String? get updatedAt;
+  @override
+  String? get summary;
+  @override
+  String? get keywords;
 
   /// Create a copy of NoteModel
   /// with the given fields replaced by the non-null parameter values.

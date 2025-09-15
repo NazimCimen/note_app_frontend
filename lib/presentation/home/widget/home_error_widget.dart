@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_note_app/core/config/localization/string_constants.dart';
 
 class HomeErrorWidget extends StatelessWidget {
   const HomeErrorWidget({required this.reload, super.key});
@@ -22,7 +23,7 @@ class HomeErrorWidget extends StatelessWidget {
           SizedBox(height: 16.h),
 
           Text(
-            'Bir Sorun Oluştu',
+            StringConstants.homeErrorTitle,
             style: theme.textTheme.titleMedium?.copyWith(
               color: colorScheme.onSurface.withValues(alpha: 0.8),
               fontWeight: FontWeight.w500,
@@ -32,7 +33,7 @@ class HomeErrorWidget extends StatelessWidget {
           SizedBox(height: 6.h),
 
           Text(
-            'Lütfen tekrar deneyin',
+            StringConstants.homeErrorSubtitle,
             style: theme.textTheme.bodySmall?.copyWith(
               color: colorScheme.onSurface.withValues(alpha: 0.6),
             ),
@@ -44,7 +45,7 @@ class HomeErrorWidget extends StatelessWidget {
           TextButton.icon(
             onPressed: reload,
             icon: Icon(Icons.refresh_rounded, size: 18.w),
-            label: const Text('Yeniden dene'),
+            label: Text(StringConstants.homeRetryButtonText),
             style: TextButton.styleFrom(foregroundColor: colorScheme.primary),
           ),
         ],

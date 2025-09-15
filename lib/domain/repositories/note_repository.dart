@@ -6,11 +6,7 @@ import 'package:flutter_note_app/domain/entities/note_entity.dart';
 /// Defines contracts for note-related operations
 abstract class NoteRepository {
   /// Create a new note
-  Future<Either<Failure, NoteEntity>> createNote({
-    required String title,
-    required String content,
-    bool isFavorite = false,
-  });
+  Future<Either<Failure, NoteEntity>> createNote({required NoteEntity note});
 
   /// Get all notes for current user with optional pagination, search, filtering and sorting
   /// filterBy: 'all' or 'favorites'
@@ -19,8 +15,8 @@ abstract class NoteRepository {
   Future<Either<Failure, List<NoteEntity>>> getNotes({
     String? search,
     String? searchIn,
-    String? filterBy, 
-    String? sortBy, 
+    String? filterBy,
+    String? sortBy,
     int page = 1,
     int perPage = 10,
   });
@@ -38,4 +34,10 @@ abstract class NoteRepository {
   Future<Either<Failure, NoteEntity>> toggleFavorite({
     required NoteEntity note,
   });
+
+  /// Generate keywords for a note
+  Future<Either<Failure, String>> generateKeywords(String content, String locale);
+
+  /// Generate summary for a note
+  Future<Either<Failure, String>> generateSummary(String content, String locale);
 }

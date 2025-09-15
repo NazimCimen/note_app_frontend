@@ -1,13 +1,13 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_note_app/core/error/failure.dart';
 import 'package:flutter_note_app/data/models/user_model.dart';
-import 'package:flutter_note_app/data/datasources/remote/user_service.dart';
+import 'package:flutter_note_app/data/datasources/remote/profile_remote_data_source.dart';
 import 'package:flutter_note_app/domain/entities/user_entity.dart';
 import 'package:flutter_note_app/domain/repositories/user_repository.dart';
 
 class UserRepositoryImpl implements UserRepository {
-  final UserService _userService;
-  UserRepositoryImpl({required UserService userService})
+  final ProfileRemoteDataSource _userService;
+  UserRepositoryImpl({required ProfileRemoteDataSource userService})
     : _userService = userService;
 
   @override
