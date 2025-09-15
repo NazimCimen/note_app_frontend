@@ -82,6 +82,8 @@ class _HomeViewState extends State<HomeView> {
                         ),
                       ),
                     ),
+
+                    
                     noItemsFoundIndicatorBuilder: (context) =>
                         const NoItemWidget(),
                     firstPageProgressIndicatorBuilder: (context) =>
