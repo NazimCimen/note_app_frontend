@@ -2,26 +2,26 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_note_app/core/error/failure.dart';
 import 'package:flutter_note_app/data/models/note_model.dart';
 import 'package:flutter_note_app/data/datasources/remote/note_remote_data_source.dart';
+import 'package:flutter_note_app/data/datasources/remote/gemini_service.dart';
 import 'package:flutter_note_app/domain/entities/note_entity.dart';
 import 'package:flutter_note_app/domain/repositories/note_repository.dart';
 
 class NoteRepositoryImpl implements NoteRepository {
   final NoteRemoteDataSource _noteService;
+  final GeminiService _geminiService;
 
-  NoteRepositoryImpl({required NoteRemoteDataSource noteService})
-    : _noteService = noteService;
+  NoteRepositoryImpl({
+    required NoteRemoteDataSource noteService,
+    required GeminiService geminiService,
+  }) : _noteService = noteService,
+       _geminiService = geminiService;
 
   @override
   Future<Either<Failure, NoteEntity>> createNote({
-    required String title,
-    required String content,
-    bool isFavorite = false,
+    required NoteEntity note,
   }) async {
-    final result = await _noteService.createNote(
-      title: title,
-      content: content,
-      isFavorite: isFavorite,
-    );
+    final noteModel = NoteModel.fromEntity(note);
+    final result = await _noteService.createNote(note: noteModel);
 
     return result.fold(
       (failure) => Left(failure),
@@ -32,9 +32,9 @@ class NoteRepositoryImpl implements NoteRepository {
   @override
   Future<Either<Failure, List<NoteEntity>>> getNotes({
     String? search,
-    String? searchIn, // 'both', 'title', 'content'
-    String? filterBy, // 'all', 'favorites'
-    String? sortBy, // 'newest', 'oldest'
+    String? searchIn,
+    String? filterBy,
+    String? sortBy,
     int page = 1,
     int perPage = 10,
   }) async {
@@ -95,5 +95,15 @@ class NoteRepositoryImpl implements NoteRepository {
       (failure) => Left(failure),
       (updatedNoteModel) => Right(updatedNoteModel.toEntity()),
     );
+  }
+
+  @override
+  Future<Either<Failure, String>> generateKeywords(String content, String locale) async {
+    return _geminiService.generateKeywords(content, locale);
+  }
+
+  @override
+  Future<Either<Failure, String>> generateSummary(String content, String locale) async {
+    return _geminiService.generateSummary(content, locale);
   }
 }

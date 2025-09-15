@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_note_app/core/error/failure.dart';
+import 'package:flutter_note_app/core/utils/params/login_params.dart';
 import 'package:flutter_note_app/domain/entities/user_entity.dart';
 
 /// Domain layer repository interface for authentication
@@ -7,16 +8,12 @@ import 'package:flutter_note_app/domain/entities/user_entity.dart';
 abstract class AuthRepository {
   /// Login with email and password
   Future<Either<Failure, void>> login({
-    required String email,
-    required String password,
+    required AuthParams loginParams,
   });
 
   /// Sign up with email and password
   Future<Either<Failure, UserEntity>> signup({
-    required String fullName,
-    required String phone,
-    required String email,
-    required String password,
+    required AuthParams authParams,
   });
 
 

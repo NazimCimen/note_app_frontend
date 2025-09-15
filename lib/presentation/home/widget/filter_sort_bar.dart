@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_note_app/presentation/home/bloc/home_cubit.dart';
-import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:flutter_note_app/domain/entities/note_entity.dart';
+import 'package:flutter_note_app/presentation/home/bloc/home_state.dart';
+import 'package:flutter_note_app/core/config/localization/string_constants.dart';
 
 /// Widget for filter and sort selection
 class FilterSortBar extends StatelessWidget {
@@ -11,7 +11,7 @@ class FilterSortBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HomeCubit, PagingState<int, NoteEntity>>(
+    return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
         final cubit = context.read<HomeCubit>();
         
@@ -36,7 +36,7 @@ class FilterSortBar extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Filtre',
+                        StringConstants.homeFilter,
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           color: Theme.of(
                             context,
@@ -106,7 +106,7 @@ class FilterSortBar extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Sırala',
+                        StringConstants.homeSort,
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           color: Theme.of(
                             context,

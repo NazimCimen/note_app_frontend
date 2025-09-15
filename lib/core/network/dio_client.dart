@@ -6,15 +6,18 @@ import 'package:flutter_note_app/core/init/di_container.dart';
 /// Handles base URL, timeouts, and interceptors
 class DioClient {
   static const String _baseUrl = 'https://note-app-backend-tau.vercel.app/api/v1';
-  static const int _connectTimeout = 30000; // 30 seconds
-  static const int _receiveTimeout = 30000; // 30 seconds
-  static const int _sendTimeout = 30000; // 30 seconds
+  static const int _connectTimeout = 30000; 
+  static const int _receiveTimeout = 30000; 
+  static const int _sendTimeout = 30000; 
 
   late final Dio _dio;
+  late final Dio _geminiDio;
 
   DioClient() {
     _dio = Dio();
+    _geminiDio = Dio();
     _setupDio();
+    _setupGeminiDio();
   }
 
   /// Configure Dio instance with base settings and interceptors
@@ -43,6 +46,32 @@ class DioClient {
     ));
   }
 
-  /// Get the configured Dio instance
+  /// Configure Dio instance for Google Gemini API
+  void _setupGeminiDio() {
+    _geminiDio.options = BaseOptions(
+      baseUrl: 'https://generativelanguage.googleapis.com',
+      connectTimeout: Duration(milliseconds: _connectTimeout),
+      receiveTimeout: Duration(milliseconds: _receiveTimeout),
+      sendTimeout: Duration(milliseconds: _sendTimeout),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+    );
+
+    // Add logging interceptor for debugging (only in debug mode)
+    _geminiDio.interceptors.add(LogInterceptor(
+      requestBody: true,
+      responseBody: true,
+      error: true,
+      requestHeader: true,
+      responseHeader: false,
+    ));
+  }
+
+  /// Get the configured Dio instance for main API
   Dio get dio => _dio;
+
+  /// Get the configured Dio instance for Google Gemini API
+  Dio get geminiDio => _geminiDio;
 }

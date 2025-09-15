@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_note_app/core/config/routes/app_routes.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_note_app/core/config/localization/string_constants.dart';
 
 class NoItemWidget extends StatelessWidget {
   const NoItemWidget({super.key});
@@ -24,7 +25,7 @@ class NoItemWidget extends StatelessWidget {
           SizedBox(height: 16.h),
 
            Text(
-             'Henüz bir notunuz yok.',
+             StringConstants.homeNoNotesTitle,
              style: theme.textTheme.titleMedium?.copyWith(
                color: colorScheme.onSurface.withValues(alpha: 0.8),
                fontWeight: FontWeight.w500,
@@ -32,7 +33,7 @@ class NoItemWidget extends StatelessWidget {
            ),
            SizedBox(height: 6.h),
            Text(
-             'İlk notunuzu yazarak başlayın',
+             StringConstants.homeNoNotesSubtitle,
              style: theme.textTheme.bodySmall?.copyWith(
                color: colorScheme.onSurface.withValues(alpha: 0.6),
              ),
@@ -42,7 +43,7 @@ class NoItemWidget extends StatelessWidget {
            TextButton.icon(
              onPressed: () => context.push(AppRoutes.createNote),
              icon: Icon(Icons.edit_outlined, size: 18.w),
-             label: const Text('İlk Notunu Oluştur'),
+             label: Text(StringConstants.homeCreateFirstNote),
              style: TextButton.styleFrom(foregroundColor: colorScheme.primary),
            ),
         ],

@@ -8,11 +8,7 @@ import 'package:flutter_note_app/data/models/note_model.dart';
 /// Abstract note service for data layer
 abstract class NoteRemoteDataSource {
   /// Create a new note
-  Future<Either<Failure, NoteModel>> createNote({
-    required String title,
-    required String content,
-    bool isFavorite = false,
-  });
+  Future<Either<Failure, NoteModel>> createNote({required NoteModel note});
 
   /// Get all notes with optional pagination, search, filtering and sorting
   /// filterBy: 'all' or 'favorites'
@@ -20,9 +16,9 @@ abstract class NoteRemoteDataSource {
   /// searchIn: 'both', 'title', or 'content'
   Future<Either<Failure, List<NoteModel>>> getNotes({
     String? search,
-    String? searchIn, 
+    String? searchIn,
     String? filterBy,
-    String? sortBy, 
+    String? sortBy,
     int page = 1,
     int perPage = 10,
   });
@@ -46,20 +42,12 @@ class NoteRemoteDataSourceImpl implements NoteRemoteDataSource {
 
   @override
   Future<Either<Failure, NoteModel>> createNote({
-    required String title,
-    required String content,
-    bool isFavorite = false,
+    required NoteModel note,
   }) async {
     try {
-      final requestData = {
-        'title': title,
-        'content': content,
-        'is_favorite': isFavorite,
-      };
-
       final response = await _dio.post<Map<String, dynamic>>(
         '/notes/',
-        data: requestData,
+        data: note.toCreateRequest(),
       );
 
       if (response.statusCode == 200 || response.statusCode == 201) {
@@ -196,4 +184,5 @@ class NoteRemoteDataSourceImpl implements NoteRemoteDataSource {
       return DioErrorHandler.handleUnexpectedError(e);
     }
   }
+
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_note_app/core/config/theme/app_colors.dart';
+import 'package:flutter_note_app/core/config/localization/string_constants.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   const HomeAppBar({super.key});
@@ -7,14 +7,13 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: AppColors.background,
       elevation: 0,
       scrolledUnderElevation: 0,
       title: Text(
-        'Notlarım',
+        StringConstants.homeTitle,
         style: Theme.of(context).textTheme.titleLarge?.copyWith(
           fontWeight: FontWeight.w700,
-          color: AppColors.noteText,
+          color:Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
         ),
       ),
       centerTitle: false,

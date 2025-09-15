@@ -103,7 +103,7 @@ class CustomBottomNavBar extends StatelessWidget {
           color: AppColors.primaryColor,
           borderRadius: BorderRadius.circular(10.r),
         ),
-        child: Icon(Icons.add_rounded, size: 20.w, color: Colors.white),
+        child: Icon(Icons.add_rounded, size: 20.w, color: AppColors.white),
       ),
     );
   }

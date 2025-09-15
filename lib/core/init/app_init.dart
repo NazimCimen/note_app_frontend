@@ -1,14 +1,16 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_note_app/core/config/localization/locale_constants.dart';
-import 'package:flutter_note_app/core/config/theme/theme_manager.dart';
+import 'package:flutter_note_app/core/config/theme/theme_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_note_app/main.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_note_app/core/init/di_container.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:flutter_note_app/presentation/auth/bloc/auth_cubit.dart';
+import 'package:flutter_note_app/presentation/profile/bloc/profile_cubit.dart';
 
 abstract class AppInit {
   Future<void> initialize();
@@ -37,10 +39,16 @@ class AppInitImpl extends AppInit {
       path: LocaleConstants.localePath,
       fallbackLocale: LocaleConstants.enLocale,
 
-      child: MultiProvider(
+      child: MultiBlocProvider(
         providers: [
-          ChangeNotifierProvider<ThemeManager>(
-            create: (context) => ThemeManager(),
+          BlocProvider<AuthCubit>(
+            create: (context) => getIt<AuthCubit>(),
+          ),
+          BlocProvider<ThemeCubit>(
+            create: (context) => ThemeCubit(),
+          ),
+          BlocProvider<ProfileCubit>(
+            create: (context) => getIt<ProfileCubit>(),
           ),
         ],
         child: const MyApp(),

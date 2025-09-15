@@ -46,116 +46,18 @@ final class AppValidators {
     }
   }
 
-  /// Validates phone number with basic numeric length constraints.
-  static String? phoneValidator(String? value) {
+  /// Validates note title input.
+  static String? noteTitleValidator(String? value) {
     if (value == null || value.trim().isEmpty) {
-      return StringConstants.validationPhoneRequired;
+      return 'Not başlığı boş olamaz';
     }
-    if (!RegExp(phoneRegExp).hasMatch(value)) {
-      return StringConstants.validationPhoneInvalid;
-    }
-    return null;
-  }
-
-  /// Validates company name with Turkish character and business name support.
-  static String? companyNameValidator(String? value) {
-    if (value == null || value.trim().isEmpty) {
-      return 'Firma adı gereklidir';
-    }
-    if (!RegExp(companyNameRegExp).hasMatch(value.trim())) {
-      return 'Firma adı geçerli değil';
-    }
-    return null;
-  }
-
-  /// Validates optional email for company.
-  static String? companyEmailValidator(String? value) {
-    if (value == null || value.trim().isEmpty) {
-      return null; // Email is optional
-    }
-    if (!RegExp(emailRegExp).hasMatch(value.trim())) {
-      return 'Geçerli bir e-posta adresi giriniz';
-    }
-    return null;
-  }
-
-  /// Validates optional phone for company.
-  static String? companyPhoneValidator(String? value) {
-    if (value == null || value.trim().isEmpty) {
-      return null; // Phone is optional
-    }
-    if (!RegExp(phoneRegExp).hasMatch(value.trim())) {
-      return 'Geçerli bir telefon numarası giriniz';
-    }
-    return null;
-  }
-
-  /// Validates optional address for company.
-  static String? companyAddressValidator(String? value) {
-    if (value == null || value.trim().isEmpty) {
-      return null; // Address is optional
-    }
-    if (value.trim().length < 10) {
-      return 'Adres en az 10 karakter olmalıdır';
-    }
-    if (value.trim().length > 500) {
-      return 'Adres en fazla 500 karakter olabilir';
-    }
-    return null;
-  }
-
-  /// Validates product name (required field).
-  static String? productNameValidator(String? value) {
-    if (value == null || value.trim().isEmpty) {
-      return 'Ürün adı boş olamaz';
-    }
-    if (value.trim().length < 2) {
-      return 'Ürün adı en az 2 karakter olmalıdır';
+    if (value.trim().length < 3) {
+      return 'Not başlığı en az 3 karakter olmalıdır';
     }
     if (value.trim().length > 100) {
-      return 'Ürün adı en fazla 100 karakter olabilir';
+      return 'Not başlığı en fazla 100 karakter olabilir';
     }
     return null;
   }
 
-  /// Validates product description (optional field).
-  static String? productDescriptionValidator(String? value) {
-    if (value == null || value.trim().isEmpty) {
-      return null; // Description is optional
-    }
-    if (value.trim().length > 500) {
-      return 'Ürün açıklaması en fazla 500 karakter olabilir';
-    }
-    return null;
-  }
-
-  /// Validates product price (required field).
-  static String? productPriceValidator(String? value) {
-    if (value == null || value.trim().isEmpty) {
-      return 'Fiyat boş olamaz';
-    }
-    
-    // Remove currency symbol and whitespace
-    final cleanValue = value.replaceAll(RegExp(r'[₺\s]'), '');
-    
-    if (cleanValue.isEmpty) {
-      return 'Geçerli bir fiyat giriniz';
-    }
-    
-    // Check if it's a valid number
-    final price = double.tryParse(cleanValue);
-    if (price == null) {
-      return 'Geçerli bir fiyat giriniz';
-    }
-    
-    if (price <= 0) {
-      return 'Fiyat 0\'dan büyük olmalıdır';
-    }
-    
-    if (price > 999999.99) {
-      return 'Fiyat çok yüksek';
-    }
-    
-    return null;
-  }
 }

@@ -15,6 +15,8 @@ class NoteModel with _$NoteModel {
     @JsonKey(name: 'user_id') String? userId,
     @JsonKey(name: 'created_at') String? createdAt,
     @JsonKey(name: 'updated_at') String? updatedAt,
+    String? summary,
+    String? keywords,
   }) = _NoteModel;
 
   const NoteModel._();
@@ -32,6 +34,8 @@ class NoteModel with _$NoteModel {
       userId: userId,
       createdAt: createdAt != null ? DateTime.tryParse(createdAt!) : null,
       updatedAt: updatedAt != null ? DateTime.tryParse(updatedAt!) : null,
+      summary: summary,
+      keywords: keywords,
     );
   }
 
@@ -45,6 +49,8 @@ class NoteModel with _$NoteModel {
       userId: entity.userId,
       createdAt: entity.createdAt?.toIso8601String(),
       updatedAt: entity.updatedAt?.toIso8601String(),
+      summary: entity.summary,
+      keywords: entity.keywords,
     );
   }
 
@@ -56,6 +62,8 @@ class NoteModel with _$NoteModel {
     if (title != null) request['title'] = title;
     if (content != null) request['content'] = content;
     if (isFavorite != null) request['is_favorite'] = isFavorite;
+    if (summary != null) request['summary'] = summary;
+    if (keywords != null) request['keywords'] = keywords;
     
     return request;
   }

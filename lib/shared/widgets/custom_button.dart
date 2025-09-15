@@ -1,7 +1,6 @@
-import 'package:flutter_note_app/core/utils/size/app_border_radius_extensions.dart';
-import 'package:flutter_note_app/core/utils/size/constant_size.dart';
 import 'package:flutter_note_app/core/config/theme/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomButtonWidget extends StatelessWidget {
   final VoidCallback onPressed;
@@ -18,20 +17,20 @@ class CustomButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: context.cXLargeValue * 1.8,
+      height: 32.h * 1.8,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.primaryColor,
-          padding: EdgeInsets.symmetric(vertical: context.cMediumValue * 0.95),
+          padding: EdgeInsets.symmetric(vertical: 16.h * 0.95),
           shape: RoundedRectangleBorder(
-            borderRadius: context.cBorderRadiusAllMedium,
+            borderRadius: BorderRadius.circular(16.r),
           ),
         ),
         onPressed: onPressed,
         child: isRequestAvaliable
             ? SizedBox(
-                width: context.cMediumValue * 1.5,
-                height: context.cMediumValue * 1.5,
+                width: 16.w * 1.5,
+                height: 16.h * 1.5,
                 child: const CircularProgressIndicator.adaptive(
                   backgroundColor: AppColors.white,
                   valueColor: AlwaysStoppedAnimation(AppColors.primaryColor),

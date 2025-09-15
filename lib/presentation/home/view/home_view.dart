@@ -5,11 +5,13 @@ import 'package:flutter_note_app/presentation/home/widget/note_card.dart';
 import 'package:flutter_note_app/presentation/home/widget/note_search_bar.dart';
 import 'package:flutter_note_app/presentation/home/widget/filter_sort_bar.dart';
 import 'package:flutter_note_app/presentation/home/bloc/home_cubit.dart';
+import 'package:flutter_note_app/presentation/home/bloc/home_state.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_note_app/presentation/home/widget/no_item_widget.dart';
 import 'package:flutter_note_app/presentation/home/widget/home_error_widget.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:flutter_note_app/domain/entities/note_entity.dart';
+import 'package:flutter_note_app/core/config/localization/string_constants.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -19,42 +21,22 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  final TextEditingController _searchController = TextEditingController();
-
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<HomeCubit>().loadNotes();
     });
-    
-    // Listen to search input changes
-    _searchController.addListener(_onSearchChanged);
   }
-
-  @override
-  void dispose() {
-    _searchController.removeListener(_onSearchChanged);
-    _searchController.dispose();
-    super.dispose();
-  }
-
-  /// Handle search input changes with debouncing
-  void _onSearchChanged() {
-    // Simple debouncing can be added here if needed
-    final query = _searchController.text;
-    context.read<HomeCubit>().updateSearchQuery(query);
-  }
-
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<HomeCubit, PagingState<int, NoteEntity>>(
+    return BlocConsumer<HomeCubit, HomeState>(
       listener: (context, state) {
-        if (state.error != null) {
+        if (state.paginationState.error != null) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text(state.error.toString()),
+              content: Text(state.paginationState.error.toString()),
               backgroundColor: Theme.of(context).colorScheme.error,
             ),
           );
@@ -62,7 +44,7 @@ class _HomeViewState extends State<HomeView> {
       },
       builder: (context, state) {
         final cubit = context.read<HomeCubit>();
-        
+
         return RefreshIndicator(
           onRefresh: () => cubit.refreshNotes(),
           child: CustomScrollView(
@@ -78,47 +60,31 @@ class _HomeViewState extends State<HomeView> {
                 elevation: 0,
               ),
 
-              SliverToBoxAdapter(
-                child: BlocBuilder<HomeCubit, PagingState<int, NoteEntity>>(
-                  builder: (context, state) {
-                    final cubit = context.read<HomeCubit>();
-                    return NoteSearchBar(
-                      searchController: _searchController,
-                      currentSearchType: cubit.currentSearchType,
-                      onSearchTypeChanged: (searchType) {
-                        cubit.updateSearchType(searchType);
-                      },
-                    );
-                  },
-                ),
-              ),
+              const SliverToBoxAdapter(child: NoteSearchBar()),
 
-              // Filter and Sort Section
-              const SliverToBoxAdapter(
-                child: FilterSortBar(),
-              ),
+              const SliverToBoxAdapter(child: FilterSortBar()),
 
               SliverPadding(
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
                 sliver: PagedSliverList<int, NoteEntity>(
-                  state: state,
+                  state: state.paginationState,
                   fetchNextPage: cubit.fetchNextPage,
                   builderDelegate: PagedChildBuilderDelegate<NoteEntity>(
                     itemBuilder: (context, note, index) => NoteCard(note: note),
-                    firstPageErrorIndicatorBuilder: (context) => HomeErrorWidget(
-                      reload: () => cubit.loadNotes(),
-                    ),
+                    firstPageErrorIndicatorBuilder: (context) =>
+                        HomeErrorWidget(reload: () => cubit.loadNotes()),
                     newPageErrorIndicatorBuilder: (context) => Padding(
                       padding: EdgeInsets.all(16.w),
                       child: Center(
                         child: ElevatedButton(
                           onPressed: () => cubit.fetchNextPage(),
-                          child: const Text('Tekrar Dene'),
+                          child: Text(StringConstants.homeRetryButton),
                         ),
                       ),
                     ),
-                    noItemsFoundIndicatorBuilder: (context) => const NoItemWidget(),
-                    firstPageProgressIndicatorBuilder: (context) => 
+                    noItemsFoundIndicatorBuilder: (context) =>
+                        const NoItemWidget(),
+                    firstPageProgressIndicatorBuilder: (context) =>
                         const Center(child: CircularProgressIndicator()),
                     newPageProgressIndicatorBuilder: (context) => Padding(
                       padding: EdgeInsets.all(16.w),

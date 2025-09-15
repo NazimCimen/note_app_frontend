@@ -31,55 +31,6 @@ final class LocaleConstants {
       locale: enLocale,
       flagName: ImageEnums.flag_usa.toPathPng,
     ),
-    AppLanguages(
-      name: 'العربية',
-      locale: saLocale,
-      flagName: ImageEnums.flag_saudi_arabia.toPathPng,
-    ),
-    AppLanguages(
-      name: 'Português',
-      locale: ptLocale,
-      flagName: ImageEnums.flag_brazil.toPathPng,
-    ),
-    AppLanguages(
-      name: '日本語',
-      locale: jaLocale,
-      flagName: ImageEnums.flag_japan.toPathPng,
-    ),
-    AppLanguages(
-      name: '한국어',
-      locale: krLocale,
-      flagName: ImageEnums.flag_south_korea.toPathPng,
-    ),
-    AppLanguages(
-      name: '中文',
-      locale: cnLocale,
-      flagName: ImageEnums.flag_china.toPathPng,
-    ),
-    AppLanguages(
-      name: 'Русский',
-      locale: ruLocale,
-      flagName: ImageEnums.flag_russia.toPathPng,
-    ),
-    AppLanguages(
-      name: 'Français',
-      locale: frLocale,
-      flagName: ImageEnums.flag_france.toPathPng,
-    ),
-    AppLanguages(
-      name: 'Deutsch',
-      locale: deLocale,
-      flagName: ImageEnums.flag_germany.toPathPng,
-    ),
-    AppLanguages(
-      name: 'Italiano',
-      locale: itLocale,
-      flagName: ImageEnums.flag_italy.toPathPng,
-    ),
-    AppLanguages(
-      name: 'Español',
-      locale: esLocale,
-      flagName: ImageEnums.flag_spain.toPathPng,
-    ),
+  
   ];
 }

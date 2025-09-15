@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_note_app/core/config/theme/app_colors.dart';
 import 'package:flutter_note_app/core/config/localization/string_constants.dart';
-import 'package:flutter_note_app/core/utils/size/constant_size.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 /// Loading widget for auth operations
 class AuthLoadingWidget extends StatelessWidget {
@@ -14,20 +13,20 @@ class AuthLoadingWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(
-            width: context.cXLargeValue,
-            height: context.cXLargeValue,
+            width: 32.w,
+            height: 32.h,
             child: CircularProgressIndicator(
               strokeWidth: 3,
-              valueColor: const AlwaysStoppedAnimation<Color>(
-                AppColors.primaryColor,
+              valueColor: AlwaysStoppedAnimation<Color>(
+                Theme.of(context).colorScheme.primary,
               ),
               backgroundColor: Theme.of(
                 context,
               ).colorScheme.surface.withValues(alpha: 0.2),
             ),
           ),
-          SizedBox(height: context.cMediumValue),
-    
+          SizedBox(height: 16.h),
+
           Text(
             StringConstants.socialLoginLoadingMessage,
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
@@ -36,8 +35,8 @@ class AuthLoadingWidget extends StatelessWidget {
             ),
             textAlign: TextAlign.center,
           ),
-          SizedBox(height: context.cSmallValue),
-    
+          SizedBox(height: 8.h),
+
           Text(
             'Lütfen bekleyin...',
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:flutter_note_app/core/utils/time_utils.dart';
 import 'package:flutter_note_app/domain/entities/note_entity.dart';
 import 'package:flutter_note_app/presentation/home/bloc/home_cubit.dart';
@@ -12,8 +13,9 @@ class NoteCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Navigate to note detail/edit page
-        //  context.push('/note/${note.id}');
+        if (note.id != null) {
+          context.pushNamed('edit-note', extra: note);
+        }
       },
       child: Container(
         margin: EdgeInsets.only(bottom: 10.h),

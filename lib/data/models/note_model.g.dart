@@ -15,6 +15,8 @@ _$NoteModelImpl _$$NoteModelImplFromJson(Map<String, dynamic> json) =>
       userId: json['user_id'] as String?,
       createdAt: json['created_at'] as String?,
       updatedAt: json['updated_at'] as String?,
+      summary: json['summary'] as String?,
+      keywords: json['keywords'] as String?,
     );
 
 Map<String, dynamic> _$$NoteModelImplToJson(_$NoteModelImpl instance) =>
@@ -26,4 +28,6 @@ Map<String, dynamic> _$$NoteModelImplToJson(_$NoteModelImpl instance) =>
       'user_id': instance.userId,
       'created_at': instance.createdAt,
       'updated_at': instance.updatedAt,
+      'summary': instance.summary,
+      'keywords': instance.keywords,
     };

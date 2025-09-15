@@ -4,11 +4,12 @@ import 'package:flutter_note_app/data/datasources/remote/auth_remote_data_source
 import 'package:flutter_note_app/data/datasources/local/auth_local_data_source.dart';
 import 'package:flutter_note_app/domain/entities/user_entity.dart';
 import 'package:flutter_note_app/domain/repositories/auth_repository.dart';
+import 'package:flutter_note_app/core/utils/params/login_params.dart';
 
 final class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSource _service;
   final AuthLocalDataSource _authLocalDataSource;
-  
+
   AuthRepositoryImpl({
     required AuthRemoteDataSource service,
     required AuthLocalDataSource authLocalDataSource,
@@ -16,33 +17,21 @@ final class AuthRepositoryImpl implements AuthRepository {
        _authLocalDataSource = authLocalDataSource;
 
   @override
-  Future<Either<Failure, void>> login({
-    required String email,
-    required String password,
-  }) async {
-    return _service.login(email: email, password: password);
+  Future<Either<Failure, void>> login({required AuthParams loginParams}) async {
+    return _service.login(authParams: loginParams);
   }
 
   @override
   Future<Either<Failure, UserEntity>> signup({
-    required String fullName,
-    required String phone,
-    required String email,
-    required String password,
+    required AuthParams authParams,
   }) async {
-    final result = await _service.signup(
-      email: email,
-      password: password,
-      fullName: fullName,
-      phone: phone,
-    );
-    
+    final result = await _service.signup(authParams: authParams);
+
     return result.fold(
       (failure) => Left(failure),
       (userModel) => Right(userModel.toEntity()),
     );
   }
-
 
   @override
   Future<Either<Failure, void>> logout() async {
@@ -60,7 +49,9 @@ final class AuthRepositoryImpl implements AuthRepository {
       final hasTokens = await _authLocalDataSource.hasValidTokens();
       return Right(hasTokens);
     } catch (e) {
-      return Left(ServerFailure(errorMessage: 'Failed to check token validity: $e'));
+      return Left(
+        ServerFailure(errorMessage: 'Failed to check token validity: $e'),
+      );
     }
   }
 
@@ -70,7 +61,9 @@ final class AuthRepositoryImpl implements AuthRepository {
       final token = await _authLocalDataSource.getAccessToken();
       return Right(token);
     } catch (e) {
-      return Left(ServerFailure(errorMessage: 'Failed to get access token: $e'));
+      return Left(
+        ServerFailure(errorMessage: 'Failed to get access token: $e'),
+      );
     }
   }
 }

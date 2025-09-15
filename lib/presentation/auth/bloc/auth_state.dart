@@ -6,7 +6,6 @@ sealed class AuthState extends Equatable {
 
   const factory AuthState.initial() = AuthInitial;
   const factory AuthState.loading() = AuthLoading;
-  const factory AuthState.socialLoading() = AuthSocialLoading;
   const factory AuthState.success() = AuthSuccess;
   const factory AuthState.failure(String message) = AuthFailure;
 

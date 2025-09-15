@@ -1,46 +1,39 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_note_app/presentation/home/bloc/home_constants.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_note_app/presentation/home/bloc/search_type.dart';
+import 'package:flutter_note_app/presentation/home/bloc/home_cubit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_note_app/core/config/localization/string_constants.dart';
 
 class NoteSearchBar extends StatefulWidget {
-  const NoteSearchBar({
-    required this.searchController,
-    this.onSearchTypeChanged,
-    this.currentSearchType = SearchType.both,
-    super.key,
-  });
-
-  final TextEditingController searchController;
-  final ValueChanged<SearchType>? onSearchTypeChanged;
-  final SearchType currentSearchType;
+  const NoteSearchBar({super.key});
 
   @override
   State<NoteSearchBar> createState() => _NoteSearchBarState();
 }
 
 class _NoteSearchBarState extends State<NoteSearchBar> {
-  bool _hasText = false;
+  TextEditingController searchController = TextEditingController();
+  Timer? _debounceTimer;
 
   @override
   void initState() {
     super.initState();
-    widget.searchController.addListener(_onTextChanged);
-    _hasText = widget.searchController.text.isNotEmpty;
+    // Initialize search controller with current search query
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final currentQuery = context.read<HomeCubit>().state.searchQuery ?? '';
+      if (searchController.text != currentQuery) {
+        searchController.text = currentQuery;
+      }
+    });
   }
 
   @override
   void dispose() {
-    widget.searchController.removeListener(_onTextChanged);
+    _debounceTimer?.cancel();
+    searchController.dispose();
     super.dispose();
-  }
-
-  void _onTextChanged() {
-    final hasText = widget.searchController.text.isNotEmpty;
-    if (_hasText != hasText) {
-      setState(() {
-        _hasText = hasText;
-      });
-    }
   }
 
   @override
@@ -63,13 +56,18 @@ class _NoteSearchBarState extends State<NoteSearchBar> {
             ),
             child: Center(
               child: TextField(
-                controller: widget.searchController,
-                onChanged: (value) => {},
+                controller: searchController,
+                onChanged: (value) {
+                  _debounceTimer?.cancel();
+                  _debounceTimer = Timer(const Duration(milliseconds: 500), () {
+                    context.read<HomeCubit>().updateSearchQuery(value);
+                  });
+                },
                 style: theme.textTheme.bodyMedium?.copyWith(
                   color: colorScheme.onSurface,
                 ),
                 decoration: InputDecoration(
-                  hintText: 'Notlarda ara...',
+                  hintText: StringConstants.homeSearchHint,
                   hintStyle: theme.textTheme.bodySmall?.copyWith(
                     color: colorScheme.onSurface.withValues(alpha: 0.5),
                   ),
@@ -78,10 +76,12 @@ class _NoteSearchBarState extends State<NoteSearchBar> {
                     size: 18.w,
                     color: colorScheme.onSurface.withValues(alpha: 0.4),
                   ),
-                  suffixIcon: _hasText
+                  suffixIcon: searchController.text.isNotEmpty
                       ? GestureDetector(
                           onTap: () {
-                            widget.searchController.clear();
+                            _debounceTimer?.cancel();
+                            searchController.clear();
+                            context.read<HomeCubit>().updateSearchQuery('');
                           },
                           child: Icon(
                             Icons.close_rounded,
@@ -121,7 +121,7 @@ class _NoteSearchBarState extends State<NoteSearchBar> {
                 ),
                 SizedBox(width: 8.w),
                 Text(
-                  'Arama türü:',
+                  StringConstants.homeSearchType,
                   style: theme.textTheme.bodySmall?.copyWith(
                     color: colorScheme.onSurface.withValues(alpha: 0.7),
                     fontWeight: FontWeight.w500,
@@ -131,7 +131,7 @@ class _NoteSearchBarState extends State<NoteSearchBar> {
                 Expanded(
                   child: DropdownButtonHideUnderline(
                     child: DropdownButton<SearchType>(
-                      value: widget.currentSearchType,
+                      value: context.watch<HomeCubit>().state.searchType,
                       isDense: true,
                       style: theme.textTheme.bodySmall?.copyWith(
                         color: colorScheme.onSurface,
@@ -146,7 +146,7 @@ class _NoteSearchBarState extends State<NoteSearchBar> {
                       }).toList(),
                       onChanged: (SearchType? value) {
                         if (value != null) {
-                          widget.onSearchTypeChanged?.call(value);
+                          context.read<HomeCubit>().updateSearchType(value);
                         }
                       },
                     ),

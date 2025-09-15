@@ -11,6 +11,8 @@ class NoteEntity extends Equatable {
     this.userId,
     this.createdAt,
     this.updatedAt,
+    this.summary,
+    this.keywords,
   });
 
   final String? id;
@@ -20,6 +22,8 @@ class NoteEntity extends Equatable {
   final String? userId;
   final DateTime? createdAt;
   final DateTime? updatedAt;
+  final String? summary;
+  final String? keywords;
 
   @override
   List<Object?> get props => [
@@ -30,6 +34,8 @@ class NoteEntity extends Equatable {
         userId,
         createdAt,
         updatedAt,
+        summary,
+        keywords,
       ];
 
   NoteEntity copyWith({
@@ -40,6 +46,8 @@ class NoteEntity extends Equatable {
     String? userId,
     DateTime? createdAt,
     DateTime? updatedAt,
+    String? summary,
+    String? keywords,
   }) {
     return NoteEntity(
       id: id ?? this.id,
@@ -49,6 +57,8 @@ class NoteEntity extends Equatable {
       userId: userId ?? this.userId,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
+      summary: summary ?? this.summary,
+      keywords: keywords ?? this.keywords,
     );
   }
 }
